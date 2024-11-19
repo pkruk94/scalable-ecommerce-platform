@@ -1,0 +1,26 @@
+version: '1'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password # security is important
+      PGDATA: /var/lib/postgresql/data # default, save your data here in container space
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+
+
+networks:
+  ecommerce-microservices-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
