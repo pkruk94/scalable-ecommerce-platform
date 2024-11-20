@@ -1,4 +1,4 @@
-name: Product Server CI/CD
+name: scalable-ecommerce-platform-product-service
 
 on:
   push:
