@@ -26,7 +26,7 @@ public class Product {
     private BigDecimal price;
     private int availableQuantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "product_category_id")
     private ProductCategory productCategory;
 }

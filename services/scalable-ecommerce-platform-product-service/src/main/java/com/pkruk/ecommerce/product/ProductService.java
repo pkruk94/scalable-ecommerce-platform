@@ -1,11 +1,10 @@
 package com.pkruk.ecommerce.product;
 
 import com.pkruk.ecommerce.exception.ProductPurchaseException;
-import com.pkruk.ecommerce.product.dto.CreateProductRequest;
-import com.pkruk.ecommerce.product.dto.ProductPurchaseRequest;
-import com.pkruk.ecommerce.product.dto.ProductPurchaseResponse;
-import com.pkruk.ecommerce.product.dto.ProductResponse;
+import com.pkruk.ecommerce.product.dto.*;
 import com.pkruk.ecommerce.product.mapper.ProductMapper;
+import com.pkruk.ecommerce.product_category.ProductCategory;
+import com.pkruk.ecommerce.product_category.ProductCategoryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -20,10 +20,36 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final ProductCategoryRepository productCategoryRepository;
 
     public Long createProduct(CreateProductRequest createProductRequest) {
         Product newProduct = productMapper.fromCreateProductRequestToProduct(createProductRequest);
         return productRepository.save(newProduct).getId();
+    }
+
+    public Long updateProduct(UpdateProductRequest updateProductRequest) {
+        Product productToUpdate =
+                productRepository.findById(updateProductRequest.productId())
+                        .orElseThrow(() -> new EntityNotFoundException(
+                                String.format("Product with id %s not found", updateProductRequest.productId())
+                        ));
+
+        if (!Objects.equals(productToUpdate.getProductCategory().getId(), updateProductRequest.categoryId())) {
+            ProductCategory newProductCategory = productCategoryRepository
+                    .findById(updateProductRequest.categoryId())
+                    .orElseThrow(() -> new EntityNotFoundException(
+                            String.format("Product category with id %s not found", updateProductRequest.categoryId())
+                    ));
+
+            productToUpdate.setProductCategory(newProductCategory);
+        }
+
+        productToUpdate.setName(updateProductRequest.name());
+        productToUpdate.setDescription(updateProductRequest.description());
+        productToUpdate.setPrice(updateProductRequest.price());
+        productToUpdate.setAvailableQuantity(updateProductRequest.availableQuantity());
+
+        return productRepository.save(productToUpdate).getId();
     }
 
     public ProductResponse getProductById(Long productId) {
@@ -72,5 +98,9 @@ public class ProductService {
             purchasedProducts.add(productMapper.fromProductToProductPurchaseResponse(storedProduct, productToPurchase.quantity()));
         }
         return purchasedProducts;
+    }
+
+    public void deleteProductById(Long productId) {
+        productRepository.deleteById(productId);
     }
 }

@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -95,7 +94,7 @@ class ProductCategoryServiceTest {
         Long result = productCategoryService.addNewProductCategory(newProductCategoryRequest);
 
         // then
-        assertThat(result).isEqualTo(CATEGORY_ID);
+        assertEquals(CATEGORY_ID, result);
         verify(productCategoryRepository).save(mappedCategory);
         verify(productCategoryMapper).fromNewProductCategoryToProductCategory(newProductCategoryRequest);
     }
@@ -110,9 +109,9 @@ class ProductCategoryServiceTest {
         Long result = productCategoryService.updateProductCategory(updateProductCategoryRequest);
 
         // then
-        assertThat(result).isEqualTo(CATEGORY_ID);
-        assertThat(productCategory.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(productCategory.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertEquals(CATEGORY_ID, result);
+        assertEquals(UPDATED_NAME, productCategory.getName());
+        assertEquals(UPDATED_DESCRIPTION, productCategory.getDescription());
 
         verify(productCategoryRepository).findById(CATEGORY_ID);
         verify(productCategoryRepository).save(productCategory);
@@ -127,8 +126,7 @@ class ProductCategoryServiceTest {
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
                 () -> productCategoryService.updateProductCategory(updateProductCategoryRequest));
 
-        assertThat(exception.getMessage())
-                .isEqualTo(String.format("Product category with id %s not found", CATEGORY_ID));
+        assertEquals(String.format("Product category with id %s not found", CATEGORY_ID), exception.getMessage());
         verify(productCategoryRepository).findById(CATEGORY_ID);
         verify(productCategoryRepository, never()).save(any());
     }
@@ -144,9 +142,7 @@ class ProductCategoryServiceTest {
         ProductCategoryResponse result = productCategoryService.getProductCategoryById(CATEGORY_ID);
 
         // then
-        assertThat(result)
-                .usingRecursiveComparison()
-                .isEqualTo(productCategoryResponse);
+        assertEquals(productCategoryResponse, result);
 
         verify(productCategoryRepository).findById(CATEGORY_ID);
         verify(productCategoryMapper).fromProductCategoryToProductCategoryResponse(productCategory);
@@ -161,8 +157,7 @@ class ProductCategoryServiceTest {
         EntityNotFoundException exception = assertThrows(EntityNotFoundException.class,
                 () -> productCategoryService.getProductCategoryById(CATEGORY_ID));
 
-        assertThat(exception.getMessage())
-                .isEqualTo(String.format("Product category with id %s not found", CATEGORY_ID));
+        assertEquals(String.format("Product category with id %s not found", CATEGORY_ID), exception.getMessage());
         verify(productCategoryRepository).findById(CATEGORY_ID);
         verify(productCategoryMapper, never()).fromProductCategoryToProductCategoryResponse(any());
     }
@@ -179,11 +174,9 @@ class ProductCategoryServiceTest {
         List<ProductCategoryResponse> result = productCategoryService.getAllProductCategories();
 
         // then
-        assertThat(result)
-                .hasSize(1)
-                .containsExactly(productCategoryResponse);
-
-        verify(productCategoryRepository).findAll();
+        assertEquals(1, result.size());
+        assertEquals(productCategoryResponse, result.getFirst());
+        verify(productCategoryRepository, times(1)).findAll();
         verify(productCategoryMapper).fromProductCategoryToProductCategoryResponse(productCategory);
     }
 
@@ -196,7 +189,7 @@ class ProductCategoryServiceTest {
         List<ProductCategoryResponse> result = productCategoryService.getAllProductCategories();
 
         // then
-        assertThat(result).isEmpty();
+        assertTrue(result.isEmpty());
         verify(productCategoryRepository).findAll();
         verify(productCategoryMapper, never()).fromProductCategoryToProductCategoryResponse(any());
     }

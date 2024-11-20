@@ -68,11 +68,9 @@ class ProductCategoryControllerTest {
 
     @Test
     void addNewCategory_WhenValidRequest_ShouldReturnOkWithId() throws Exception {
-        // given
         when(productCategoryService.addNewProductCategory(any(NewProductCategoryRequest.class)))
                 .thenReturn(CATEGORY_ID);
 
-        // when & then
         mockMvc.perform(post(BASE_URL + "/addNewCategory")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(newProductCategoryRequest)))
@@ -95,7 +93,7 @@ class ProductCategoryControllerTest {
                 .andExpect(jsonPath("$.errors.name").value("Product category name is required"))
                 .andExpect(jsonPath("$.errors.description").value("Product category description is required"));
 
-        verify(productCategoryService, never()).addNewProductCategory(any());
+        verify(productCategoryService, never()).addNewProductCategory(any(NewProductCategoryRequest.class));
     }
 
     @Test
