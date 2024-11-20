@@ -2,23 +2,23 @@ name: Product Server CI/CD
 
 on:
   push:
-    paths:
-      - 'services/${{ github.workflow }}/**'
-      - '.github/workflows/${{ github.workflow }}.yml'
+#    paths:
+#      - 'services/${{ github.workflow }}/**'
+#      - '.github/workflows/${{ github.workflow }}.yml'
     branches: [ main ]
   pull_request:
-    paths:
-      - 'services/${{ github.workflow }}/**'
-      - '.github/workflows/${{ github.workflow }}.yml'
+#    paths:
+#      - 'services/${{ github.workflow }}/**'
+#      - '.github/workflows/${{ github.workflow }}.yml'
     branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: services:/${{ github.workflow }}
+#    defaults:
+#      run:
+#        working-directory: services:/${{ github.workflow }}
 
     steps:
       - name: Checkout code

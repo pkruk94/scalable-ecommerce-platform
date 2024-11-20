@@ -1,10 +1,10 @@
-package com.pkruk.ecommerce.config;
+package com.pkruk.ecommerce;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ScalableEcommercePlatformConfigServerApplicationTests {
+class ScalableEcommercePlatformDiscoveryServiceApplicationTests {
 
     @Test
     void contextLoads() {
