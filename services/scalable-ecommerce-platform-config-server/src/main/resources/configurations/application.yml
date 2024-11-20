@@ -1,0 +1,12 @@
+# COMMON APPLICATION PROPERTIES
+
+server:
+  port: 0 # start server on random port by default
+  shutdown: graceful # allows for existing request to finish, but does not accept any new requests
+
+spring:
+  cloud:
+    config:
+      allow-override: true # allow microservices to override the remote properties with their own
+      override-none: true # override configuration with any local property source
+      override-system-properties: false
