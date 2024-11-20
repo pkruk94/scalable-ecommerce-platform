@@ -82,10 +82,8 @@ class ProductCategoryControllerTest {
 
     @Test
     void addNewCategory_WhenInvalidRequest_ShouldReturnBadRequestWithErrors() throws Exception {
-        // given
         NewProductCategoryRequest invalidRequest = new NewProductCategoryRequest("", "");
 
-        // when & then
         mockMvc.perform(post(BASE_URL + "/addNewCategory")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalidRequest)))
@@ -98,11 +96,9 @@ class ProductCategoryControllerTest {
 
     @Test
     void updateProductCategory_WhenValidRequest_ShouldReturnOkWithId() throws Exception {
-        // given
         when(productCategoryService.updateProductCategory(any(UpdateProductCategoryRequest.class)))
                 .thenReturn(CATEGORY_ID);
 
-        // when & then
         mockMvc.perform(put(BASE_URL + "/updateProductCategory")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updateProductCategoryRequest)))
@@ -114,12 +110,10 @@ class ProductCategoryControllerTest {
 
     @Test
     void updateProductCategory_WhenCategoryNotFound_ShouldReturnBadRequestWithMessage() throws Exception {
-        // given
         String errorMessage = "Category not found";
         when(productCategoryService.updateProductCategory(any(UpdateProductCategoryRequest.class)))
                 .thenThrow(new EntityNotFoundException(errorMessage));
 
-        // when & then
         mockMvc.perform(put(BASE_URL + "/updateProductCategory")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updateProductCategoryRequest)))
@@ -131,11 +125,9 @@ class ProductCategoryControllerTest {
 
     @Test
     void getProductCategory_WhenExists_ShouldReturnCategory() throws Exception {
-        // given
         when(productCategoryService.getProductCategoryById(CATEGORY_ID))
                 .thenReturn(productCategoryResponse);
 
-        // when & then
         mockMvc.perform(get(BASE_URL + "/{product-category-id}", CATEGORY_ID))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -148,12 +140,10 @@ class ProductCategoryControllerTest {
 
     @Test
     void getProductCategory_WhenNotExists_ShouldReturnBadRequestWithMessage() throws Exception {
-        // given
         String errorMessage = String.format("Product category with id %s not found", CATEGORY_ID);
         when(productCategoryService.getProductCategoryById(CATEGORY_ID))
                 .thenThrow(new EntityNotFoundException(errorMessage));
 
-        // when & then
         mockMvc.perform(get(BASE_URL + "/{product-category-id}", CATEGORY_ID))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string(errorMessage));
@@ -163,11 +153,9 @@ class ProductCategoryControllerTest {
 
     @Test
     void getAllProductCategory_ShouldReturnList() throws Exception {
-        // given
         List<ProductCategoryResponse> categories = List.of(productCategoryResponse);
         when(productCategoryService.getAllProductCategories()).thenReturn(categories);
 
-        // when & then
         mockMvc.perform(get(BASE_URL))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -181,7 +169,6 @@ class ProductCategoryControllerTest {
 
     @Test
     void deleteProductCategory_ShouldReturnOk() throws Exception {
-        // when & then
         mockMvc.perform(delete(BASE_URL + "/{product-category-id}", CATEGORY_ID))
                 .andExpect(status().isNoContent());
 
@@ -190,12 +177,10 @@ class ProductCategoryControllerTest {
 
     @Test
     void deleteProductCategory_WhenNotExists_ShouldReturnBadRequestWithMessage() throws Exception {
-        // given
         String errorMessage = String.format("Product category with id %s not found", CATEGORY_ID);
         doThrow(new EntityNotFoundException(errorMessage))
                 .when(productCategoryService).deleteProductCategoryById(CATEGORY_ID);
 
-        // when & then
         mockMvc.perform(delete(BASE_URL + "/{product-category-id}", CATEGORY_ID))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string(errorMessage));
