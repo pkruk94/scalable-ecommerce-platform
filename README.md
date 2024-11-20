@@ -2,7 +2,6 @@
 Simple project for the purpose of learning
 
 # TODO
-- Testy do produktu
 - Swagger of AliBu
 - IT Masterclass testy
 - Ogólnie projekt ecommerce + spirng petclnic i inne + teoria z backendu
