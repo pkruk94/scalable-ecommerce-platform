@@ -22,3 +22,12 @@ https://docs.spring.io/spring-cloud-netflix/reference/spring-cloud-netflix.html#
   Set more than 1 instance of Eureka
 - Specifying Multiple URLs for the Config Server 
   Security
+
+# TODO
+- CQRS
+- Saga
+- Circuit Breaker
+- DLQ
+- API First
+- Architektura heksagonalna
+- monorepo vs single repo
