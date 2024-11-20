@@ -10,6 +10,7 @@ spring:
     config:
       server:
         # TODO - move configuration to external repository
+        # https://docs.spring.io/spring-cloud-config/reference/server/environment-repository/git-backend.html
 #        git:
 #          uri: https://github.com/pkruk94/scalable-ecommerce-platform-config
 #          default-label: main
