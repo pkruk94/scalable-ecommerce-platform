@@ -3,13 +3,13 @@ name: Config Server CI/CD
 on:
   push:
     paths:
-      - 'services/${{ github.workflow }}/**'
-      - '.github/workflows/${{ github.workflow }}.yml'
+      - 'services/scalable-ecommerce-platform-config-service/**'
+      - '.github/workflows/scalable-ecommerce-platform-config-service.yml'
     branches: [ main ]
   pull_request:
     paths:
-      - 'services/${{ github.workflow }}/**'
-      - '.github/workflows/${{ github.workflow }}.yml'
+      - 'services/scalable-ecommerce-platform-config-service/**'
+      - '.github/workflows/scalable-ecommerce-platform-config-service.yml'
     branches: [ main ]
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: services/${{ github.workflow }}
+        working-directory: services/scalable-ecommerce-platform-config-service
 
     steps:
       - name: Checkout code

@@ -2,6 +2,9 @@
 Simple project for the purpose of learning
 
 # TODO
+- IT Masterclass testy
+- Ogólnie projekt ecommerce + spirng petclnic i inne + teoria z backendu
+- Iteracyjne ulepszanie tego projektu
 - Docker - ciag dalszy kursu
 
 https://blog.logrocket.com/creating-separate-monorepo-ci-cd-pipelines-github-actions/
@@ -31,3 +34,6 @@ https://docs.spring.io/spring-cloud-netflix/reference/spring-cloud-netflix.html#
 - API First
 - Architektura heksagonalna
 - monorepo vs single repo
+
+- add doc https://www.youtube.com/watch?app=desktop&v=2o_3hjUPAfQ&t=0s
+- 
