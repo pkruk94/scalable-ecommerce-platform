@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         ProductCategoryController.class,
         GlobalControllerAdvice.class
 })
-@ActiveProfiles("test")
 class ProductCategoryControllerTest {
 
     @Autowired
