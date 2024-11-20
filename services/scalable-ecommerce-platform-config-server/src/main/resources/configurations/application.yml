@@ -4,6 +4,17 @@ server:
   port: 0 # start server on random port by default
   shutdown: graceful # allows for existing request to finish, but does not accept any new requests
 
+eureka:
+  instance:
+    hostname: localhost
+  server:
+    port: 8761
+  client:
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${eureka.server.port}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
 spring:
   cloud:
     config:
