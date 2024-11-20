@@ -31,8 +31,5 @@ jobs:
           distribution: 'corretto'
           cache: maven
 
-      - name: Build with Maven
+      - name: Build and test with Maven
         run: mvn clean verify
-
-      - name: Run tests
-        run: mvn test
