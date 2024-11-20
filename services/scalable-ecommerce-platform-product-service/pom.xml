@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pkruk</groupId>
-	<artifactId>product-service</artifactId>
+	<artifactId>scalable-ecommerce-platform-product-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>product-service</name>
-	<description>product-service</description>
+	<name>scalable-ecommerce-platform-product-service</name>
+	<description>scalable-ecommerce-platform-product-service</description>
 	<url/>
 	<licenses>
 		<license/>
