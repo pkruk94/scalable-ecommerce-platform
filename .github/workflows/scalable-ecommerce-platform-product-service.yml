@@ -1,19 +1,16 @@
 name: Product Service CI/CD
 
-env:
-  SERVICE_NAME: scalable-ecommerce-platform-product-service
-
 on:
   push:
-    branches: [ main ]
     paths:
-      - 'services/${{ env.SERVICE_NAME }}/**'
-      - '.github/workflows/${{ env.SERVICE_NAME }}.yml'
+      - 'services/scalable-ecommerce-platform-product-service**'
+      - '.github/workflows/scalable-ecommerce-platform-product-service.yml'
+    branches: [ main ]
   pull_request:
-    branches: [ main ]
     paths:
-      - 'services/${{ env.SERVICE_NAME }}/**'
-      - '.github/workflows/${{ env.SERVICE_NAME }}.yml'
+      - 'services/scalable-ecommerce-platform-product-service/**'
+      - '.github/workflows/scalable-ecommerce-platform-product-service.yml'
+    branches: [ main ]
 
 jobs:
   build:
@@ -21,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: services/${{ env.SERVICE_NAME }}
+        working-directory: services/scalable-ecommerce-platform-product-service
 
     steps:
       - name: Checkout code
