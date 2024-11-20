@@ -2,6 +2,11 @@
 Simple project for the purpose of learning
 
 # TODO
+- Testy do produktu
+- Swagger of AliBu
+- IT Masterclass testy
+- Ogólnie projekt ecommerce + spirng petclnic i inne + teoria z backendu
+- Iteracyjne ulepszanie tego projektu
 - Docker - ciag dalszy kursu
 
 https://blog.logrocket.com/creating-separate-monorepo-ci-cd-pipelines-github-actions/
