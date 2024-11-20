@@ -1,0 +1,18 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/pkruk94/scalable-ecommerce-platform-config
+          default-label: main
+        # Use alternate source to avoid git pulling, uses native file source
+        # Need to enable 'native' profile - e.g. with spring.profiles.active
+        native:
+          search-locations: file:///${GIT_REPO}
