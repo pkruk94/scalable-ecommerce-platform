@@ -2,14 +2,14 @@ name: scalable-ecommerce-platform-product-service
 
 on:
   push:
-#    paths:
-#      - 'services/${{ github.workflow }}/**'
-#      - '.github/workflows/${{ github.workflow }}.yml'
+    paths:
+      - '../../services/${{ github.workflow }}/**'
+      - '.github/workflows/${{ github.workflow }}.yml'
     branches: [ main ]
   pull_request:
-#    paths:
-#      - 'services/${{ github.workflow }}/**'
-#      - '.github/workflows/${{ github.workflow }}.yml'
+    paths:
+      - '../../services/${{ github.workflow }}/**'
+      - '.github/workflows/${{ github.workflow }}.yml'
     branches: [ main ]
 
 jobs:
