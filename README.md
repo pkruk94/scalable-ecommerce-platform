@@ -2,7 +2,6 @@
 Simple project for the purpose of learning
 
 # TODO
-- Swagger of AliBu
 - IT Masterclass testy
 - Ogólnie projekt ecommerce + spirng petclnic i inne + teoria z backendu
 - Iteracyjne ulepszanie tego projektu
@@ -35,3 +34,6 @@ https://docs.spring.io/spring-cloud-netflix/reference/spring-cloud-netflix.html#
 - API First
 - Architektura heksagonalna
 - monorepo vs single repo
+
+- add doc https://www.youtube.com/watch?app=desktop&v=2o_3hjUPAfQ&t=0s
+- 
