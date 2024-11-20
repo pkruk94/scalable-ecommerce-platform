@@ -1,0 +1,38 @@
+name: Product Server CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/${{ github.workflow }}/**'
+      - '.github/workflows/${{ github.workflow }}.yml'
+    branches: [ main ]
+  pull_request:
+    paths:
+      - 'services/${{ github.workflow }}/**'
+      - '.github/workflows/${{ github.workflow }}.yml'
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: services:/${{ github.workflow }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn clean verify
+
+      - name: Run tests
+        run: mvn test
