@@ -18,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: services:/${{ github.workflow }}
+        working-directory: services/${{ github.workflow }}
 
     steps:
       - name: Checkout code

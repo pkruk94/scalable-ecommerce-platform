@@ -1,4 +1,4 @@
-name: Config Server CI/CD
+name: scalable-ecommerce-platform-config-service
 
 on:
   push:
